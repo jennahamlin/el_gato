@@ -2,16 +2,16 @@
 
 ## Input files
 
-If available, we recommend using raw or trimmed reads instead of assemblies as the extra data contained in reads is valuable for the process used by el_gato to identify sample ST. When run with reads, el_gato is able to use read quality and coverage information to apply quality control rules. When run using assemblies, el_gato is unable to identify errors that have been incorporated into the assembly and may therefore report incorrect results. For example, while many isolates encode two copies of *mompS*, in some cases only one copy of the locus is assembled. If only the secondary *mompS* locus is included in the assembly then el_gato will report that allele.
+If available, we recommend using raw or trimmed reads instead of assemblies, as the extra data contained in reads is valuable for the process used by el_gato to identify sample ST. When run with reads, el_gato can use read quality and coverage information to apply quality control rules. When run using assemblies, el_gato cannot identify errors incorporated into the assembly and may report incorrect results. For example, while many isolates encode two copies of mompS, in some cases, the assembly includes only one copy of the locus. If the assembly consists of only the secondary mompS locus, el_gato will report that allele.
 
 #### Pair-end reads
-When running on a directory of reads, files are associated as pairs using the pattern `R{1,2}.fastq`. i.e., filenames should be identical except for containing either "R1" or "R2" and can be .fastq or .fastq.gz format. Any files for which a pair can not be identified using this pattern will not be processed.
+When running on a directory of reads, files are associated as pairs using the pattern `R{1,2}.fastq`. i.e., filenames should be identical except for containing either "R1" or "R2" and can be .fastq or .fastq.gz format. el_gato will not process any files for which it cannot identify a pair using this pattern.
 
 #### Genome assemblies
-When running on a directory of assemblies, all files in the target directory will be processed, and there is no filename restrictions.
+When running on a directory of assemblies, el_gato will process all files in the target directory, and no filename restrictions exist.
 
 ## Output files
-After a run, el_gato will print the identified ST of your sample to your terminal ([stdout](#standard-out)) and write several files to the specified output directory (default: out/).  A subdirectory is created for each sample processed, and each subdirectory is named with its sample name and contains output files specific to that sample (see below). 
+After a run, el_gato will print the identified ST of your sample to your terminal ([stdout](#standard-out)) and write several files to the specified output directory (default: out/). el_gato creates a subdirectory for each processed sample, including five output files with specific information.
 
 ### The files included in the output directory for a sample are: 
 
