@@ -10,7 +10,7 @@ El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads 
 * [Usage](#usage)
    * [Quickstart guide](#quickstart-guide)
    * [All available arguments](#all-available-arguments)
-* [Input and Output](input_output.md)
+* [Input and Output](docs/input_output.md)
   * [Input files](#input-files)
      * [Paired-end reads](#pair-end-reads)
      * [Genome assemblies](#genome-assemblies)      
