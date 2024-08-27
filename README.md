@@ -27,7 +27,7 @@ El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads 
 * [Reporting Module](#reporting-module)
 
 Codebase stage: XX  
-Developers, maintainers, and testers: [Alan Collins](https://github.com/Alan-Collins), [Will Overholt](https://github.com/waoverholt/), [Jenna Hamlin](https://github.com/jennahamlin)
+Developers, maintainers, and testers: [Alan Collins](https://github.com/Alan-Collins), [Will Overholt](https://github.com/waoverholt/), [Jenna Hamlin](https://github.com/jennahamlin)  
 Previous developrs, maintainers, and testers: [Dev Mashruwala](https://github.com/dmashruwala), [Andrew Conley](https://github.com/abconley), [Lavanya Rishishwar](https://github.com/lavanyarishishwar), [Emily T. Norris](https://github.com/norriset), [Anna Gaines](https://github.com/annagaines)
 
 # Installation 
@@ -62,7 +62,7 @@ python3 -m pip install .
 # Usage
 
 ## Quickstart Guide
-An example of a basic run using paired-end reads or assemblies as input. We recommend using reads whenever available, as read-based sequence typing is more reliable ([see input for more information](#input-and-output)).
+An example of a basic run using paired-end reads or assemblies as input. We recommend using reads whenever available, as read-based sequence typing is more reliable ([see input for more information](#input_output.md)).
 ```
 # Paired-end:
 el_gato.py --read1 read1.fastq.gz --read2 read2.fastq.gz --out output_folder/
