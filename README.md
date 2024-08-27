@@ -1,7 +1,7 @@
 # el_gato
 **E**pidemiology of ***L**egionella* : **G**enome-b**A**sed **T**yping:  
 
-El_gato is a bioinformatics tool that utilizes either a genome assembly (.fasta) or Illumina paired-end reads (.fastq) to replicate *Legionella pneumophila* Sequence Based Typing (SBT). From the input, 7 loci (*flaA*, *pilE*, *asd*, *mip*, *mompS*, *proA*, *neuA/neuAh*) are identified and compared to a database of sequence types. The sequence type provided for each input sample is based on the unique combination of the allelic identities of the 7 target loci. 
+El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads (.fastq) or a genome assembly (.fasta) as input to replicate *Legionella pneumophila* Sanger-based Sequence Based Typing (SBT). From the input, seven loci (*flaA*, *pilE*, *asd*, *mip*, *mompS*, *proA*, *neuA/neuAh*) are identified and compared to a database of sequence types. The unique combination of the allelic identities of the seven target loci determines the sequence type provided for each input sample. 
 
 * [Installation](#installation)
    * [Method 1: using conda](#method-1-using-conda)
@@ -26,14 +26,15 @@ El_gato is a bioinformatics tool that utilizes either a genome assembly (.fasta)
 * [Using Nextflow](#using-nextflow)
 * [Reporting Module](#reporting-module)
 
-Codebase stage: development   
-Developers and maintainers, Testers: [Alan Collins](https://github.com/Alan-Collins), [Dev Mashruwala](https://github.com/dmashruwala), [Andrew Conley](https://github.com/abconley), [Lavanya Rishishwar](https://github.com/lavanyarishishwar), [Emily T. Norris](https://github.com/norriset), [Anna Gaines](https://github.com/annagaines), [Will Overholt](https://github.com/waoverholt/)
+Codebase stage: XX  
+Developers, maintainers, and testers: [Alan Collins](https://github.com/Alan-Collins), [Will Overholt](https://github.com/waoverholt/), [Jenna Hamlin](https://github.com/jennahamlin)
+Previous developrs, maintainers, and testers: [Dev Mashruwala](https://github.com/dmashruwala), [Andrew Conley](https://github.com/abconley), [Lavanya Rishishwar](https://github.com/lavanyarishishwar), [Emily T. Norris](https://github.com/norriset), [Anna Gaines](https://github.com/annagaines)
 
 # Installation 
 
 ## Method 1: using conda
 ```
-# Create an environment named elgato and install el_gato.py plus all dependencies
+# Create an environment, here named elgato, and install el_gato.py plus all dependencies
 conda create -n elgato -c bioconda -c conda-forge el_gato
 
 # Activate the environment to use el_gato.py
@@ -41,7 +42,7 @@ conda activate elgato
 ```
 
 ## Method 2: using pip
-**Note** Using this method requires you to install all [dependencies](#dependencies) manually.
+**Note** Using this method requires you to install all [dependencies](#dependencies)
 ```
 # Download el_gato by cloning the git repository
 git clone https://github.com/appliedbinf/el_gato.git
@@ -51,15 +52,17 @@ cd el_gato/
 python3 -m pip install .
 ```
 ### Dependencies
-* [minimap2](https://github.com/lh3/minimap2)
-* [SAMTools](https://github.com/samtools/samtools)
-* [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
-* [isPcr](https://users.soe.ucsc.edu/~kent/)
+* [python3]() [what version]
+* [minimap2](https://github.com/lh3/minimap2) [what version]
+* [SAMTools](https://github.com/samtools/samtools) [what version]
+* [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [what version]
+* [isPcr](https://users.soe.ucsc.edu/~kent/) [what version]
+* [fpdf2]() [what version]
   
 # Usage
 
 ## Quickstart Guide
-Here is an example of a basic run using paired-end reads or assemblies as input.
+An example of a basic run using paired-end reads or assemblies as input. We recommend using reads whenever available, as read-based sequence typing is more reliable ([see input for more information](#input-and-output)).
 ```
 # Paired-end:
 el_gato.py --read1 read1.fastq.gz --read2 read2.fastq.gz --out output_folder/
@@ -132,99 +135,6 @@ Optional arguments:
                             (default: False)
 ```
 
-# Input and Output
-
-## Input files
-
-#### Pair-end reads
-When running on a directory of reads, files are associated as pairs using the pattern `R{1,2}.fastq`. i.e., filenames should be identical except for containing either "R1" or "R2" and can be .fastq or .fastq.gz format. Any files for which a pair can not be identified using this pattern will not be processed.
-
-#### Genome assemblies
-When running on a directory of assemblies, all files in the target directory will be processed, and there is no filename restrictions.
-
-## Output files
-After a run, el_gato will print the identified ST of your sample to your terminal ([stdout](#standard-out)) and write several files to the specified output directory (default: out/).  A subdirectory is created for each sample processed, and each subdirectory is named with its sample name and contains output files specific to that sample (see below). 
-
-### The files included in the output directory for a sample are: 
-
-### standard out
-ST profile is written as a tab-delimited table without the headings. Headings are included if el_gato.py is run with `-e` flag and are displayed like so:
-
-`Sample  ST flaA  pilE  asd   mip   mompS proA  neuA_neuAH`    
-
- The sample column contains the user-provided or inferred sample name. The ST column contains the overall sequence type of the sample. 
-
-The ST column can contain two kinds of values. If the identified ST corresponds to a profile found in the database, the corresponding number is given. If no matching ST profile is found or el_gato was unable to make a confident call, then this will be reflected in the value displayed in the ST column.
-
-The corresponding allele number is reported for each gene if an exact allele match is found in the database. Alternatively, el_gato may also note the following symbols:
-
-| Symbol | Meaning |
-|:------:|:---------|
-|Novel ST    | Novel Sequence Type: All 7 target genes were found, but not present in the profile - most likely a novel sequence type. |
-|Novel ST*    | Novel Sequence Type due to novel allele: One or multiple target genes have a novel allele found. |
-|MD-     | Missing Data: ST is  unidentifiable as a result of or more of the target genes that are unidentifiable.  |
-|MA?     | Multiple Alleles: ST is ambiguous due to multiple alleles that could not be resolved. |
-| NAT    | Novel Allele Type: BLAST cannot find an exact allele match - most likely a new allele. |
-| -      | Missing Data: Both percent and length identities are too low to return a match or N's in sequence. |
-| ?      | Multiple Alleles: More than one allele was found and could not be resolved. |
-
-If symbols are present in the ST profile, the other output files produced by el_gato will provide additional information to understand what is being communicated.
-
-### possible_mlsts.txt
-This file would contain all possible ST profiles if el_gato identified multiple possible alleles for any ST loci. In addition, if multiple *mompS* alleles were found, the information used to determine the primary allele is reported in two columns: "mompS_reads_support" and "mompS_reads_against." mompS_reads_support indicates the number of reads associated with each allele that contains the reverse sequencing primer in the expected orientation, which suggests that this is the primary allele. mompS_reads_against indicates the number of reads containing the reverse sequencing primer in the wrong orientation and thus demonstrates that this is the secondary allele. These values are used to infer which allele is the primary *mompS* allele, and their values can be considered to represent the confidence of this characterization. [See Approach subsection for more details](#reads).
-
-### intermediate_outputs.txt
-el_gato calls other programs to perform intermediate analyses. The outputs of those programs are provided in this file. In addition, to help with troubleshooting issues, important log messages are also written in this file. The following information may be contained in this file, depending on if the input is reads or assembly:
-
-* Reads-only - Samtools coverage command output. [See samtools coverage documentation for more information about headers](https://www.htslib.org/doc/samtools-coverage.html) or [below.](#samtools-coverage-headers)
-* Reads-only - Information about the orientation of *mompS* sequencing primer in reads mapping to biallelic sites. [See Approach subsection for more details](#reads).
-* BLAST output indicating the best match for identified alleles. [See BLAST output documentation for more information about headers](https://www.ncbi.nlm.nih.gov/books/NBK279684/table/appendices.T.options_common_to_all_blast/) or [below.](#blastn-output-headers)
-
-Headers are included in outputs for the samtools coverage command and blast results. Header definitions are as follows:
-
-#### samtools coverage headers
-
-| Column header | Meaning 
-|:-------------:|:---------------------------------------------------:|
-| rname         | Locus name                                          |
-| numreads      | Number reads aligned to the region (after filtering)|
-| covbases      | Number of covered bases with depth >= 10             |
-| coverage      | Percentage of covered bases [0..100]                |
-| meandepth     | Mean depth of coverage                              |
-| meanbaseq     | Mean baseQ in covered region                        |
-| meanmapq      | Mean mapQ of selected reads                         | 
-
-### BLASTn output headers
-
-| Column header | Meaning                             |
-|:-------------:|:-----------------------------------:|
-| qseqid        | Query sequence id                   |
-| sseqid        | Subject (matched allele) id         |
-| pident        | Percentage of identical matches     |
-| length        | Alignment length (sequence overlap) |
-| mismatch      | Number of mismatches                |
-| gapopen       | Mumber of gap openings              |
-| qstart        | Start of alignment in query         |
-| qend          | End of alignment in query           |
-| sstart        | Start of alignment in subject       |
-| send          | End of alignment in subject         |
-| evalue        | Expect value                        |
-| bitscore      | Bit score                           |
-| qlen          | Query sequence length               |
-| slen          | Subject sequence length             |
-
-
-### identified_alleles.fna
-The nucleotide sequence of all identified alleles is written in this file. If more than one allele is determined for the same locus, they are numbered arbitrarily. Fasta headers of sequences in this file correspond to the query IDs in the BLAST output reported in the intermediate_outputs.txt file.
-
-### run.log
-A detailed log of the steps taken during el_gato's running includes the outputs of any programs called by el_gato and any errors encountered. Some command outputs include headers (e.g., samtools coverage and BLAST).
-
-### reads_vs_all_ref_filt_sorted.bam (reads only)
-el_gato maps the provided reads to [a set of reference sequences in the el_gato db directory](https://github.com/appliedbinf/el_gato/blob/main/el_gato/db/ref_gene_regions.fna). The mapped reads are then used to extract the sequences present in the sample for identifying the alleles and, ultimately, the ST. reads_vs_all_ref_filt_sorted.bam and its associated file reads_vs_all_ref_filt_sorted.bai contains the mapping information that was used by el_gato. The BAM file can be viewed using software such as [IGV](https://software.broadinstitute.org/software/igv/) to understand better the data used by el_gato to make allele calls. Additionally, this file is a good starting point for investigating the cause of incorrectly resolved loci.
-
-**Note:** A SAM file is also present, which has the same information as in the BAM file.
-
 ### report-json
 Each sample outputs a json file that contains relevant information about the run that will be included in the report PDF.   
 
@@ -238,18 +148,10 @@ Assembly: BLAST hit length and sequence identity thresholds and locus location i
 
 # Approach
 
- At its core, el_gato uses BLAST to identify the closest match to each allele in your input data. For the loci *flaA*, *pilE*, *asd*, *mip*, and *proA*, this process is straight forward. Whereas loci *mompS* and *neuA/neuAh* require more involved processing, with neuA/neuAh being an issue only when processing reads—the specifics of these loci are discussed in the corresponding sections below. 
+At its core, el_gato uses BLAST to identify the closest match to each allele in your input data. For the loci *flaA*, *pilE*, *asd*, *mip*, and *proA*, this process is straight forward. Whereas loci *mompS* and *neuA/neuAh* require more involved processing, with neuA/neuAh being an issue only when processing reads—the specifics of these loci are discussed in the corresponding sections below. 
 
 
 First for the simple loci (*flaA*, *pilE*, *asd*, *mip*, and *proA*), the following processes are used:
-
-## Assembly
-
-Six of the seven loci (*flaA*, *pilE*, *asd*, *mip*,*proA*, and *neuA/neuAh*) are identified using BLAST. For each, the best BLAST result is returned as the allele. The closest match is returned with an \* if loci have no exact match. [add in updated code changes if necessary] When processing an assembly, only *mompS* requires extra processing. 
-
-### *mompS*
-
-[*mompS* is sometimes present in multiple copies in *Legionella pneumophila*, though typically two copies.](https://doi.org/10.1016/j.cmi.2017.01.002) When typing *L. pneumophila* using Sanger sequencing, primers amplify only the correct *mompS* locus. We, therefore, use *in silico* PCR to extract the correct *mompS* locus sequence from the assembly. The primers used for *in silico* PCR are *mompS*-450F (TTGACCATGAGTGGGATTGG) and *mompS*-1116R (TGGATAAATTATCCAGCCGGACTTC) [as described in this protocol](https://doi.org/10.1007/978-1-62703-161-5_6). The *mompS* allele is then identified using BLAST.
 
 ## Reads
 
@@ -296,6 +198,14 @@ If the above process cannot identify the correct sequence, a ? will be returned 
 
 ## *momps* Read Mapping Schematic
 ![mompS read mapping schematic](https://github.com/appliedbinf/el_gato/blob/images/images/mompS_allele_assignment.png)
+
+## Assembly
+
+Six of the seven loci (*flaA*, *pilE*, *asd*, *mip*,*proA*, and *neuA/neuAh*) are identified using BLAST. For each, the best BLAST result is returned as the allele. The closest match is returned with an \* if loci have no exact match. [add in updated code changes if necessary] When processing an assembly, only *mompS* requires extra processing. 
+
+### *mompS*
+
+[*mompS* is sometimes present in multiple copies in *Legionella pneumophila*, though typically two copies.](https://doi.org/10.1016/j.cmi.2017.01.002) When typing *L. pneumophila* using Sanger sequencing, primers amplify only the correct *mompS* locus. We, therefore, use *in silico* PCR to extract the correct *mompS* locus sequence from the assembly. The primers used for *in silico* PCR are *mompS*-450F (TTGACCATGAGTGGGATTGG) and *mompS*-1116R (TGGATAAATTATCCAGCCGGACTTC) [as described in this protocol](https://doi.org/10.1007/978-1-62703-161-5_6). The *mompS* allele is then identified using BLAST.
 
 # Using NextFlow 
 ## Using NextFlow with Singularity Container
