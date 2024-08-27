@@ -62,7 +62,7 @@ python3 -m pip install .
 # Usage
 
 ## Quickstart Guide
-An example of a basic run using paired-end reads or assemblies as input. We recommend using reads whenever available, as read-based sequence typing is more reliable ([see input for more information](#input_output.md)).
+An example of a basic run using paired-end reads or assemblies as input. We recommend using reads whenever available, as read-based sequence typing is more reliable ([see input for more information](docs/input_output.md)).
 ```
 # Paired-end:
 el_gato.py --read1 read1.fastq.gz --read2 read2.fastq.gz --out output_folder/
