@@ -1,5 +1,6 @@
 ---
 title: Input and Output
+layout: template
 filename: input_output.md
 --- 
 
