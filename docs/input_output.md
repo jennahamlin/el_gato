@@ -1,8 +1,8 @@
 # Input and Output
 * [Input and Output](docs/input_output.md)
-  * [Input files](docs/input_output.md/input-files)
-     * [Paired-end reads](docs/input_output.md/pair-end-reads)
-     * [Genome assemblies](docs/input_output.md/genome-assemblies)      
+  * [Input files](#input-files)
+     * [Paired-end reads](#pair-end-reads)
+     * [Genome assemblies](#genome-assemblies)      
   * [Output files](docs/input_output.md/output-files)
      * [standard out](docs/input_output.md/standard-out)
      * [possible_mlsts.txt](docs/input_output.md/possible_mlststxt)
