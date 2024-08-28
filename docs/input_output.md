@@ -3,8 +3,9 @@
   * [Input files](#input-files)
      * [Paired-end reads](#pair-end-reads)
      * [Genome assemblies](#genome-assemblies)      
-  * [Output files](docs/input_output.md/output-files)
-     * [standard out](docs/input_output.md/standard-out)
+  * [Output](#output)
+     * [Standard Out](#standard-out)
+     * [Output files](#output-files)
      * [possible_mlsts.txt](docs/input_output.md/possible_mlststxt)
      * [intermediate_outputs.txt](docs/input_output.md/intermediate_outputstxt)
      * [identified_alleles.fna](docs/input_output.md/identified_allelesfna)
@@ -22,21 +23,19 @@ When running on a directory of reads, files are associated as pairs using the pa
 #### Genome assemblies
 When running on a directory of assemblies, el_gato will process all files in the target directory, and no filename restrictions exist.
 
-## Output files
+## Output 
 After a run, el_gato will print the identified ST of your sample to your terminal ([stdout](#standard-out)) and write several files to the specified output directory (default: out/). el_gato creates a subdirectory for each processed sample, including five output files with specific information.
 
-### The files included in the output directory for a sample are: 
-
 ### standard out
-ST profile is written as a tab-delimited table without the headings. Headings are included if el_gato.py is run with `-e` flag and are displayed like so:
+el_gato writes the ST profile as a tab-delimited table without the headings. If you run el_gato with the `-e` flag, it includes the headings and displays them like this: 
 
 `Sample  ST flaA  pilE  asd   mip   mompS proA  neuA_neuAH`    
 
  The sample column contains the user-provided or inferred sample name. The ST column contains the overall sequence type of the sample. 
 
-The ST column can contain two kinds of values. If the identified ST corresponds to a profile found in the database, the corresponding number is given. If no matching ST profile is found or el_gato was unable to make a confident call, then this will be reflected in the value displayed in the ST column.
+The ST column can contain two kinds of values. If the identified ST corresponds to a profile found in the database, el_gato provides the corresponding number. If el_gato finds no matching ST profile or if el_gato is unable to make a confident call, then this will be reflected in the value displayed in the ST column.
 
-The corresponding allele number is reported for each gene if an exact allele match is found in the database. Alternatively, el_gato may also note the following symbols:
+el_gato reports the corresponding allele number for each gene if an exact match is found in the database. Alternatively, el_gato may also note the following symbols:
 
 | Symbol | Meaning |
 |:------:|:---------|
@@ -49,6 +48,9 @@ The corresponding allele number is reported for each gene if an exact allele mat
 | ?      | Multiple Alleles: More than one allele was found and could not be resolved. |
 
 If symbols are present in the ST profile, the other output files produced by el_gato will provide additional information to understand what is being communicated.
+
+## Output files
+### The files included in the output directory for a sample are: 
 
 ### possible_mlsts.txt
 This file would contain all possible ST profiles if el_gato identified multiple possible alleles for any ST loci. In addition, if multiple *mompS* alleles were found, the information used to determine the primary allele is reported in two columns: "mompS_reads_support" and "mompS_reads_against." mompS_reads_support indicates the number of reads associated with each allele that contains the reverse sequencing primer in the expected orientation, which suggests that this is the primary allele. mompS_reads_against indicates the number of reads containing the reverse sequencing primer in the wrong orientation and thus demonstrates that this is the secondary allele. These values are used to infer which allele is the primary *mompS* allele, and their values can be considered to represent the confidence of this characterization. [See Approach subsection for more details](#reads).
