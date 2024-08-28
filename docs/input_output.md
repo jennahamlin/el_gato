@@ -60,11 +60,11 @@ The nucleotide sequence of all identified alleles is written in this file. If mo
 #### intermediate_outputs.txt
 el_gato calls other programs to perform intermediate analyses. The outputs of those programs are provided in this file. In addition, essential log messages are also written in this file to help with troubleshooting issues. The following information may be contained in this file, depending on if the input is reads or assembly:
 
-* Reads-only - Samtools coverage command output. [See samtools coverage documentation for more information about headers](https://www.htslib.org/doc/samtools-coverage.html) or [here.](docs/headers.md/#samtools-coverage-headers)
+* Reads-only - Samtools coverage command output. [See samtools coverage documentation for more information about headers](https://www.htslib.org/doc/samtools-coverage.html) or [here.](headers.md/#samtools-coverage-headers)
 
 * Reads-only - Information about the orientation of *mompS* sequencing primer in reads mapping to biallelic sites. [See Approach subsection for more details](#reads).
 
-* BLAST output indicating the best match for identified alleles. [See BLAST output documentation for more information about headers](https://www.ncbi.nlm.nih.gov/books/NBK279684/table/appendices.T.options_common_to_all_blast/) or [here.](docs/headers.md/#blastn-output-headers)
+* BLAST output indicating the best match for identified alleles. [See BLAST output documentation for more information about headers](https://www.ncbi.nlm.nih.gov/books/NBK279684/table/appendices.T.options_common_to_all_blast/) or [here.](headers.md/#blastn-output-headers)
 
 #### possible_mlsts.txt
 This file would contain all possible ST profiles if el_gato identified multiple possible alleles for any ST loci. In addition, if multiple *mompS* alleles were found, the information used to determine the primary allele is reported in two columns: "mompS_reads_support" and "mompS_reads_against." mompS_reads_support indicates the number of reads associated with each allele that contains the reverse sequencing primer in the expected orientation, which suggests that this is the primary allele. mompS_reads_against indicates the number of reads containing the reverse sequencing primer in the wrong orientation and thus demonstrates that this is the secondary allele. These values are used to infer which allele is the primary *mompS* allele, and their values can be considered to represent the confidence of this characterization. [See Approach subsection for more details](XXX).
