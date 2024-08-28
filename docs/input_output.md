@@ -1,5 +1,17 @@
 # Input and Output
-
+* [Input and Output](docs/input_output.md)
+  * [Input files](docs/input_output.md/input-files)
+     * [Paired-end reads](docs/input_output.md/pair-end-reads)
+     * [Genome assemblies](docs/input_output.md/genome-assemblies)      
+  * [Output files](docs/input_output.md/output-files)
+     * [standard out](docs/input_output.md/standard-out)
+     * [possible_mlsts.txt](docs/input_output.md/possible_mlststxt)
+     * [intermediate_outputs.txt](docs/input_output.md/intermediate_outputstxt)
+     * [identified_alleles.fna](docs/input_output.md/identified_allelesfna)
+     * [run.log](docs/input_output.md/runlog)
+     * [reads_vs_all_ref_filt_sorted.bam](docs/input_output.md/reads_vs_all_ref_filt_sortedbam-reads-only)
+     * [report.json](docs/input_output.md/reportjson)
+     
 ## Input files
 
 If available, we recommend using raw or trimmed reads instead of assemblies, as the extra data contained in reads is valuable for the process used by el_gato to identify sample ST. When run with reads, el_gato can use read quality and coverage information to apply quality control rules. When run using assemblies, el_gato cannot identify errors incorporated into the assembly and may report incorrect results. For example, while many isolates encode two copies of mompS, in some cases, the assembly includes only one copy of the locus. If the assembly consists of only the secondary mompS locus, el_gato will report that allele.
@@ -92,3 +104,14 @@ A detailed log of the steps taken during el_gato's running includes the outputs 
 el_gato maps the provided reads to [a set of reference sequences in the el_gato db directory](https://github.com/appliedbinf/el_gato/blob/main/el_gato/db/ref_gene_regions.fna). The mapped reads are then used to extract the sequences present in the sample for identifying the alleles and, ultimately, the ST. reads_vs_all_ref_filt_sorted.bam and its associated file reads_vs_all_ref_filt_sorted.bai contains the mapping information that was used by el_gato. The BAM file can be viewed using software such as [IGV](https://software.broadinstitute.org/software/igv/) to understand better the data used by el_gato to make allele calls. Additionally, this file is a good starting point for investigating the cause of incorrectly resolved loci.
 
 **Note:** A SAM file is also present, which has the same information as in the BAM file.
+
+### report-json
+Each sample outputs a json file that contains relevant information about the run that will be included in the report PDF.   
+
+Summary page metadata: Complete MLST profile of the sample and the abbreviation key for the symbols.  
+
+Run-specific data:  
+
+Paired-end reads: Locus coverage information and *mompS* primer information.  
+
+Assembly: BLAST hit length and sequence identity thresholds and locus location information.  
