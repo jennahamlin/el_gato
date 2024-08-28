@@ -1,21 +1,22 @@
 # Input and Output
 * [Input and Output](docs/input_output.md)
   * [Input files](#input-files)
-     * [Paired-end reads](#pair-end-reads)
-     * [Genome assemblies](#genome-assemblies)      
+   * [Paired-end reads](#pair-end-reads)
+   * [Genome assemblies](#genome-assemblies)      
   * [Output](#output)
-     * [Standard Out](#standard-out)
-     * [Output files](#output-files)
-     * [possible_mlsts.txt](docs/input_output.md/possible_mlststxt)
-     * [intermediate_outputs.txt](docs/input_output.md/intermediate_outputstxt)
-     * [identified_alleles.fna](docs/input_output.md/identified_allelesfna)
-     * [run.log](docs/input_output.md/runlog)
-     * [reads_vs_all_ref_filt_sorted.bam](docs/input_output.md/reads_vs_all_ref_filt_sortedbam-reads-only)
-     * [report.json](docs/input_output.md/reportjson)
-     
+   * [Standard Out](#standard-out)
+  * [Output files](#output-files)
+   * [identified_alleles.fna](#identified_allelesfna)
+   * [intermediate_outputs.txt](#intermediate_outputstxt)
+   * [possible_mlsts.txt](#possible_mlststxt)
+   * [reads_vs_all_ref_filt_sorted.bam](#reads_vs_all_ref_filt_sorted.bam)
+   * [reads_vs_all_ref_filt_sorted.bam.bai](#reads_vs_all_ref_filt_sorted.bam.bai)
+   * [report.json](#reportjson)
+   * [run.log](#runlog)
+   
 ## Input files
 
-If available, we recommend using raw or trimmed reads instead of assemblies, as the extra data contained in reads is valuable for the process used by el_gato to identify sample ST. When run with reads, el_gato can use read quality and coverage information to apply quality control rules. When run using assemblies, el_gato cannot identify errors incorporated into the assembly and may report incorrect results. For example, while many isolates encode two copies of mompS, in some cases, the assembly includes only one copy of the locus. If the assembly consists of only the secondary mompS locus, el_gato will report that allele.
+If available, **we recommend using raw or trimmed reads instead of assemblies**, as the extra data contained in reads is valuable for the process used by el_gato to identify sample ST. When run with reads, el_gato can use read quality and coverage information to apply quality control rules. When run using assemblies, el_gato cannot identify errors incorporated into the assembly and may report incorrect results. For example, while many isolates encode two copies of mompS, in some cases, the assembly includes only one copy of the locus. If the assembly consists of only the secondary mompS locus, el_gato will report that allele.
 
 #### Pair-end reads
 When running on a directory of reads, files are associated as pairs using the pattern `R{1,2}.fastq`. i.e., filenames should be identical except for containing either "R1" or "R2" and can be .fastq or .fastq.gz format. el_gato will not process any files for which it cannot identify a pair using this pattern.
@@ -53,48 +54,16 @@ If symbols are present in the ST profile, the other output files produced by el_
 ### The files included in the output directory for a sample are: 
 
 ### possible_mlsts.txt
-This file would contain all possible ST profiles if el_gato identified multiple possible alleles for any ST loci. In addition, if multiple *mompS* alleles were found, the information used to determine the primary allele is reported in two columns: "mompS_reads_support" and "mompS_reads_against." mompS_reads_support indicates the number of reads associated with each allele that contains the reverse sequencing primer in the expected orientation, which suggests that this is the primary allele. mompS_reads_against indicates the number of reads containing the reverse sequencing primer in the wrong orientation and thus demonstrates that this is the secondary allele. These values are used to infer which allele is the primary *mompS* allele, and their values can be considered to represent the confidence of this characterization. [See Approach subsection for more details](#reads).
+This file would contain all possible ST profiles if el_gato identified multiple possible alleles for any ST loci. In addition, if multiple *mompS* alleles were found, the information used to determine the primary allele is reported in two columns: "mompS_reads_support" and "mompS_reads_against." mompS_reads_support indicates the number of reads associated with each allele that contains the reverse sequencing primer in the expected orientation, which suggests that this is the primary allele. mompS_reads_against indicates the number of reads containing the reverse sequencing primer in the wrong orientation and thus demonstrates that this is the secondary allele. These values are used to infer which allele is the primary *mompS* allele, and their values can be considered to represent the confidence of this characterization. [See Approach subsection for more details](XXX).
 
 ### intermediate_outputs.txt
-el_gato calls other programs to perform intermediate analyses. The outputs of those programs are provided in this file. In addition, to help with troubleshooting issues, important log messages are also written in this file. The following information may be contained in this file, depending on if the input is reads or assembly:
+el_gato calls other programs to perform intermediate analyses. The outputs of those programs are provided in this file. In addition, essential log messages are also written in this file to help with troubleshooting issues. The following information may be contained in this file, depending on if the input is reads or assembly:
 
-* Reads-only - Samtools coverage command output. [See samtools coverage documentation for more information about headers](https://www.htslib.org/doc/samtools-coverage.html) or [below.](#samtools-coverage-headers)
+* Reads-only - Samtools coverage command output. [See samtools coverage documentation for more information about headers](https://www.htslib.org/doc/samtools-coverage.html) or [below.](headers.md/samtools-coverage-headers)
+
 * Reads-only - Information about the orientation of *mompS* sequencing primer in reads mapping to biallelic sites. [See Approach subsection for more details](#reads).
-* BLAST output indicating the best match for identified alleles. [See BLAST output documentation for more information about headers](https://www.ncbi.nlm.nih.gov/books/NBK279684/table/appendices.T.options_common_to_all_blast/) or [below.](#blastn-output-headers)
 
-Headers are included in outputs for the samtools coverage command and blast results. Header definitions are as follows:
-
-#### samtools coverage headers
-
-| Column header | Meaning 
-|:-------------:|:---------------------------------------------------:|
-| rname         | Locus name                                          |
-| numreads      | Number reads aligned to the region (after filtering)|
-| covbases      | Number of covered bases with depth >= 10             |
-| coverage      | Percentage of covered bases [0..100]                |
-| meandepth     | Mean depth of coverage                              |
-| meanbaseq     | Mean baseQ in covered region                        |
-| meanmapq      | Mean mapQ of selected reads                         | 
-
-### BLASTn output headers
-
-| Column header | Meaning                             |
-|:-------------:|:-----------------------------------:|
-| qseqid        | Query sequence id                   |
-| sseqid        | Subject (matched allele) id         |
-| pident        | Percentage of identical matches     |
-| length        | Alignment length (sequence overlap) |
-| mismatch      | Number of mismatches                |
-| gapopen       | Mumber of gap openings              |
-| qstart        | Start of alignment in query         |
-| qend          | End of alignment in query           |
-| sstart        | Start of alignment in subject       |
-| send          | End of alignment in subject         |
-| evalue        | Expect value                        |
-| bitscore      | Bit score                           |
-| qlen          | Query sequence length               |
-| slen          | Subject sequence length             |
-
+* BLAST output indicating the best match for identified alleles. [See BLAST output documentation for more information about headers](https://www.ncbi.nlm.nih.gov/books/NBK279684/table/appendices.T.options_common_to_all_blast/) or [below.](headers.md/blastn-output-headers)
 
 ### identified_alleles.fna
 The nucleotide sequence of all identified alleles is written in this file. If more than one allele is determined for the same locus, they are numbered arbitrarily. Fasta headers of sequences in this file correspond to the query IDs in the BLAST output reported in the intermediate_outputs.txt file.
