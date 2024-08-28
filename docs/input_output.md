@@ -39,10 +39,10 @@ el_gato reports the corresponding allele number for each gene if an exact match 
 
 | Symbol | Meaning |
 |:------:|:---------|
-|Novel ST    | Novel Sequence Type: All 7 target genes were found, but not present in the profile - most likely a novel sequence type. |
-|Novel ST*    | Novel Sequence Type due to novel allele: One or multiple target genes have a novel allele found. |
-|MD-     | Missing Data: ST is  unidentifiable as a result of or more of the target genes that are unidentifiable.  |
-|MA?     | Multiple Alleles: ST is ambiguous due to multiple alleles that could not be resolved. |
+| Novel ST      | Novel Sequence Type: All 7 target genes were found but not present in the profile - most likely a novel sequence type. |
+| Novel ST*      | Novel Sequence Type due to novel allele: One or multiple target genes have a novel allele found. |
+| MD-      | Missing Data: ST is unidentifiable as a result of or more of the target genes that are unidentifiable.  |
+| MA?      | Multiple Alleles: ST is ambiguous due to multiple alleles that could not be resolved. |
 | NAT    | Novel Allele Type: BLAST cannot find an exact allele match - most likely a new allele. |
 | -      | Missing Data: Both percent and length identities are too low to return a match or N's in sequence. |
 | ?      | Multiple Alleles: More than one allele was found and could not be resolved. |

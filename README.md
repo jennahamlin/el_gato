@@ -1,7 +1,7 @@
 # el_gato
 **E**pidemiology of ***L**egionella* : **G**enome-b**A**sed **T**yping:  
 
-El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads (.fastq) or a genome assembly (.fasta) as input to replicate *Legionella pneumophila* Sanger-based Sequence Based Typing (SBT). From the input, seven loci (*flaA*, *pilE*, *asd*, *mip*, *mompS*, *proA*, *neuA/neuAh*) are identified and compared to a database of sequence types. The unique combination of the allelic identities of the seven target loci determines the sequence type provided for each input sample. 
+El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads (.fastq) or a genome assembly (.fasta) as input to replicate *Legionella pneumophila* Sanger-based Sequence Based Typing (SBT). From the input, seven loci (*flaA*, *pilE*, *asd*, *mip*, *mompS*, *proA*, *neuA/neuAh*) are identified and compared to a database of sequence types. The unique combination of the allelic identities of the seven target loci determines the sequence type for each input sample. 
 
 * [Installation](#installation)
    * [Method 1: using conda](#method-1-using-conda)
@@ -11,17 +11,8 @@ El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads 
    * [Quickstart guide](#quickstart-guide)
    * [All available arguments](#all-available-arguments)
 * [Input and Output](docs/input_output.md)
-  * [Input files](#input-files)
-     * [Paired-end reads](#pair-end-reads)
-     * [Genome assemblies](#genome-assemblies)      
-  * [Output files](#output-files)
-     * [standard out](#standard-out)
-     * [possible_mlsts.txt](#possible_mlststxt)
-     * [intermediate_outputs.txt](#intermediate_outputstxt)
-     * [identified_alleles.fna](#identified_allelesfna)
-     * [run.log](#runlog)
-     * [reads_vs_all_ref_filt_sorted.bam](#reads_vs_all_ref_filt_sortedbam-reads-only)
-     * [report.json](#reportjson)
+  * [Input files](docs/input_output.md/input-files)
+  * [Output files](docs/input_output.md/output-files)
 * [How does el_gato work?](#approach)
 * [Using Nextflow](#using-nextflow)
 * [Reporting Module](#reporting-module)
@@ -134,18 +125,6 @@ Optional arguments:
                             file to be included in the output directory
                             (default: False)
 ```
-
-### report-json
-Each sample outputs a json file that contains relevant information about the run that will be included in the report PDF.   
-
-Summary page metadata: Complete MLST profile of the sample and the abbreviation key for the symbols.  
-
-Run-specific data:  
-
-Paired-end reads: Locus coverage information and *mompS* primer information.  
-
-Assembly: BLAST hit length and sequence identity thresholds and locus location information.  
-
 # Approach
 
 At its core, el_gato uses BLAST to identify the closest match to each allele in your input data. For the loci *flaA*, *pilE*, *asd*, *mip*, and *proA*, this process is straight forward. Whereas loci *mompS* and *neuA/neuAh* require more involved processing, with neuA/neuAh being an issue only when processing reads—the specifics of these loci are discussed in the corresponding sections below. 
