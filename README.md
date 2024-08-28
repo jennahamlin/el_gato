@@ -14,7 +14,7 @@ El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads 
   * [Input files](docs/input_output.md/#input-files)
   * [Output files](docs/input_output.md/#output-files)
 * [How does el_gato work?](#approach)
-* [Using Nextflow](#using-nextflow)
+* [Nextflow option](docs/nextflow.md)
 * [Reporting Module](#reporting-module)
 
 Codebase stage: XX  
@@ -185,33 +185,6 @@ Six of the seven loci (*flaA*, *pilE*, *asd*, *mip*,*proA*, and *neuA/neuAh*) ar
 ### *mompS*
 
 [*mompS* is sometimes present in multiple copies in *Legionella pneumophila*, though typically two copies.](https://doi.org/10.1016/j.cmi.2017.01.002) When typing *L. pneumophila* using Sanger sequencing, primers amplify only the correct *mompS* locus. We, therefore, use *in silico* PCR to extract the correct *mompS* locus sequence from the assembly. The primers used for *in silico* PCR are *mompS*-450F (TTGACCATGAGTGGGATTGG) and *mompS*-1116R (TGGATAAATTATCCAGCCGGACTTC) [as described in this protocol](https://doi.org/10.1007/978-1-62703-161-5_6). The *mompS* allele is then identified using BLAST.
-
-# Using NextFlow 
-## Using NextFlow with Singularity Container
-
-We provide a singularity container that can be run using the nextflow workflow for el_gato on a directory of either reads or assemblies. In both cases the target directory must contain only paired reads files (in .fastq or .fastq.gz format) or assembly files (in fasta format).
-
-```
-# Reads
-nextflow run_el_gato.nf --reads_dir <path/to/reads/directory> --threads <threads> --out <path/to/output/directory> -profile singularity -c nextflow.config
-
-# Assemblies
-nextflow run_el_gato.nf --assembly_dir <path/to/assemblies/directory> --threads <threads> --out <path/to/output/directory> -profile singularity -c nextflow.config
-```
-
-**Note:** To run nextflow without the singularity container, uncomment conda environment installation on line 10 and line 47 of the run_el_gato.nf file and use the following commands:
-
-```
-# Reads
-nextflow run_el_gato.nf --reads_dir <path/to/reads/directory> --threads <threads> --out <path/to/output/directory>
-
-# Assemblies
-nextflow run_el_gato.nf --assembly_dir <path/to/assemblies/directory> --threads <threads> --out <path/to/output/directory>
-```
-## Output files for Nextflow
-At the completion of a run, the specified output directory (default: el_gato_out/) will contain a file named "all_mlst.txt" (the MLST profile of each sample) and one directory for each sample processed. Each sub-directory is named with a sample name and contains output files specific to that sample. These files include the el_gato log file and files providing more details about the sequences identified in the sample.  
-
-Additionally, the specified output directory will contain a combined json file (report.json) that contains all of the data from the individual sample-level json files and the report PDF (report.pdf).
 
 # Reporting Module  
 ## Dependencies
