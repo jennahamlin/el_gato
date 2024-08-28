@@ -11,7 +11,7 @@
       * [possible_mlsts.txt](#possible_mlststxt)
       * [reads_vs_all_ref_filt_sorted.bam](#reads_vs_all_ref_filt_sorted.bam)
       * [reads_vs_all_ref_filt_sorted.bam.bai](#reads_vs_all_ref_filt_sorted.bam.bai)
-      * [report.json](#report-json)
+      * [report.json](#report.json)
       * [run.log](#run.log)
    
 ## Input files
@@ -74,7 +74,7 @@ el_gato maps the provided reads to [a set of reference sequences in the el_gato 
 ### reads_vs_all_ref_filt_sorted.bam.bai (reads only)
 
 
-### report-json
+### report.json
 Each sample outputs a json file that contains relevant information about the run that will be included in the report PDF.   
 
 Summary page metadata: Complete MLST profile of the sample and the abbreviation key for the symbols.  
