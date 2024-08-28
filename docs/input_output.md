@@ -11,8 +11,8 @@
       * [possible_mlsts.txt](#possible_mlststxt)
       * [reads_vs_all_ref_filt_sorted.bam](#reads_vs_all_ref_filt_sortedbam)
       * [reads_vs_all_ref_filt_sorted.bam.bai](#reads_vs_all_ref_filt_sortedbambai)
-      * [report.json](#report-json)
-      * [run.log](#run-log)
+      * [report.json](#reportjson)
+      * [run.log](#runlog)
    
 ## Input files
 
@@ -51,7 +51,8 @@ el_gato reports the corresponding allele number for each gene if an exact match 
 If symbols are present in the ST profile, the other output files produced by el_gato will provide additional information to understand what is being communicated.
 
 ## Output files
-### The files included in the output directory for a sample are: 
+
+**The files included in the output directory for a sample are:**
 
 #### identified_alleles.fna
 The nucleotide sequence of all identified alleles is written in this file. If more than one allele is determined for the same locus, they are numbered arbitrarily. Fasta headers of sequences in this file correspond to the query IDs in the BLAST output reported in the intermediate_outputs.txt file.
@@ -68,10 +69,10 @@ el_gato calls other programs to perform intermediate analyses. The outputs of th
 #### possible_mlsts.txt
 This file would contain all possible ST profiles if el_gato identified multiple possible alleles for any ST loci. In addition, if multiple *mompS* alleles were found, the information used to determine the primary allele is reported in two columns: "mompS_reads_support" and "mompS_reads_against." mompS_reads_support indicates the number of reads associated with each allele that contains the reverse sequencing primer in the expected orientation, which suggests that this is the primary allele. mompS_reads_against indicates the number of reads containing the reverse sequencing primer in the wrong orientation and thus demonstrates that this is the secondary allele. These values are used to infer which allele is the primary *mompS* allele, and their values can be considered to represent the confidence of this characterization. [See Approach subsection for more details](XXX).
 
-#### reads_vs_all_ref_filt_sorted.bam (reads only)
+#### reads_vs_all_ref_filt_sorted.bam 
 el_gato maps the provided reads to [a set of reference sequences in the el_gato db directory](https://github.com/appliedbinf/el_gato/blob/main/el_gato/db/ref_gene_regions.fna). The mapped reads are then used to extract the sequences present in the sample for identifying the alleles and, ultimately, the ST. reads_vs_all_ref_filt_sorted.bam and its associated file reads_vs_all_ref_filt_sorted.bai contains the mapping information that was used by el_gato. The BAM file can be viewed using software such as [IGV](https://software.broadinstitute.org/software/igv/) to understand better the data used by el_gato to make allele calls. Additionally, this file is a good starting point for investigating the cause of incorrectly resolved loci.
 
-#### reads_vs_all_ref_filt_sorted.bam.bai (reads only)
+#### reads_vs_all_ref_filt_sorted.bam.bai 
 Index file which allows programs that can read it to more efficiently work with the data in the associated files.
 
 #### report.json
