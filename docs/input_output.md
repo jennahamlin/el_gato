@@ -9,10 +9,10 @@
       * [identified_alleles.fna](#identified_allelesfna)
       * [intermediate_outputs.txt](#intermediate_outputstxt)
       * [possible_mlsts.txt](#possible_mlststxt)
-      * [reads_vs_all_ref_filt_sorted.bam](#reads_vs_all_ref_filt_sorted.bam)
-      * [reads_vs_all_ref_filt_sorted.bam.bai](#reads_vs_all_ref_filt_sorted.bam.bai)
-      * [report.json](#report.json)
-      * [run.log](#run.log)
+      * [reads_vs_all_ref_filt_sorted.bam](#reads_vs_all_ref_filt_sortedbam)
+      * [reads_vs_all_ref_filt_sorted.bam.bai](#reads_vs_all_ref_filt_sortedbambai)
+      * [report.json](#report-json)
+      * [run.log](#run-log)
    
 ## Input files
 
