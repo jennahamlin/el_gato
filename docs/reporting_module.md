@@ -7,6 +7,7 @@ Nextflow generates this report by default, but you must run it manually if you r
 * [Usage](#usage)
   * [Quickstart](#quickstart)
   * [All available arguments](#all-available-arguments)
+* [Example image of pdf repot](#example-image-of-pdf-report)
 
 ## Dependencies
   * [fpdf2](https://github.com/py-pdf/fpdf2)
@@ -32,6 +33,8 @@ options:
   --header_file         Provide a custom header in a text file
 ```
 
+### Example image of pdf report
+[will include when NC printing into report is resolved]
 
 
 
