@@ -3,7 +3,7 @@
 We provide a script that generates a PDF report of each el_gato run using the report.json file generated in the output folder for each sample.
 Nextflow generates this report by default, but you must run it manually if you run el_gato for individual samples. You can generate a report for one or more samples, including assembly, and read reports.
 
-*[Dependencies](#dependencies)
+* [Dependencies](#dependencies)
 * [Usage](#usage)
   * [Quickstart](#quickstart)
   * [All available arguments](#all-available-arguments)
@@ -27,8 +27,8 @@ options:
   -o, --out_report      desired output pdf file path
   -s, --shorten_names   shorten long sample and contig names to prevent line wrapping
   -n, --no_header       Do not include the header in the report
-  --custom_header       Provide a custom header as a string in your in your command
-  --header_file         Provide a custom header in a a text file
+  --custom_header       Provide a custom header as a string in your command
+  --header_file         Provide a custom header in a text file
 
 
 
