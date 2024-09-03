@@ -21,6 +21,7 @@ elgato_report.py -i <path/to/report1.json> [<path/to/report2.json> ...] -o <path
 ### All available arguments
 Usage information printed when running elgato_report.py with `-h` or `--help`
 
+```
 options:
   -h, --help            show this help message and exit
   -i, --input_jsons     path to one or more report.json files
@@ -29,7 +30,7 @@ options:
   -n, --no_header       Do not include the header in the report
   --custom_header       Provide a custom header as a string in your command
   --header_file         Provide a custom header in a text file
-
+```
 
 
 
