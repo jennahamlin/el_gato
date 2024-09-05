@@ -27,6 +27,8 @@ Previous developrs, maintainers, and testers: [Dev Mashruwala](https://github.co
 ```
 # Create an environment, here named elgato, and install el_gato.py plus all dependencies
 conda create -n elgato -c bioconda -c conda-forge el_gato
+[JH confirm final time that this will make el_gato and report module work]
+[maybe but mamba in parenthesis after conda or vice versus b/c we use mamba]
 
 # Activate the environment to use el_gato.py
 conda activate elgato
