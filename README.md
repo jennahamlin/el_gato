@@ -116,7 +116,7 @@ Optional arguments:
                             Specify the BLAST hit length threshold for  
                             identifying multiple loci in an assembly  
                             (default: 0.3)
---sequence SEQUENCE        -s SEQUENCE  
+--sequence SEQUENCE        -q SEQUENCE  
                             Specify BLAST hit percent identity threshold for  
                             identifying multiple loci in an assembly  
                             (default: 95.0)
