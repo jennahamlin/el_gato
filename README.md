@@ -27,6 +27,7 @@ Previous developrs, maintainers, and testers: [Dev Mashruwala](https://github.co
 ```
 # Create an environment, here named elgato, and install el_gato.py plus all dependencies
 conda create -n elgato -c bioconda -c conda-forge el_gato
+
 [JH confirm final time that this will make el_gato and report module work]
 [maybe but mamba in parenthesis after conda or vice versus b/c we use mamba]
 
@@ -65,6 +66,7 @@ el_gato.py --assembly assembly_file.fna --out output_folder/
 ```
 
 ## All available arguments
+[add in new arguments like the kmer option once included]
 Usage information printed when running el_gato.py with `-h` or `--help`.
 ```
 usage: el_gato.py [--read1 Read 1 file] [--read2 Read 2 file] [--assembly Assembly file] [--help]  
