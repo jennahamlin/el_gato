@@ -3,11 +3,12 @@
 At its core, el_gato uses [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to identify the closest match to each allele from the input data. For the loci *flaA*, *pilE*, *asd*, *mip*, and *proA*, this process is straight forward. While el_gato requires more involved processing for *mompS* and *neuA/neuAh* loci, where el_gato only encounters issues with *neuA/neuAh* when processing reads.
 
 * [Reads](#reads)
-   * [neuA/neuAh](#neuA/neuAh)
-   * [mompS](#momps-and-reads)
-   * [mompS Read Mapping Schematic](#momps-read-mapping-schematic)
+   * [*neuA/neuAh*](#neuA/neuAh)
+   * [Allelic diversity in *neuA/neuAh*](#allelic-diversity-in-neuA/neuAh)
+   * [*mompS* and reads](#momps-and-reads)
+   * [*mompS* Read Mapping Schematic](#momps-read-mapping-schematic)
 * [Assembly](#assembly)
-   * [mompS and assemblies](#momps-and-assemblies)
+   * [*mompS* and assemblies](#momps-and-assemblies)
 
 
 First for the simple loci (*flaA*, *pilE*, *asd*, *mip*, and *proA*), the following processes are used:
