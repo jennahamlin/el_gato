@@ -3,7 +3,7 @@
 At its core, el_gato uses [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to identify the closest match to each allele from the input data. For the loci *flaA*, *pilE*, *asd*, *mip*, and *proA*, this process is straight forward. While el_gato requires more involved processing for *mompS* and *neuA/neuAh* loci, where el_gato only encounters issues with *neuA/neuAh* when processing reads.
 
 * [Reads](#reads)
-   * [*neuA/neuAh*](#neuA/neuAh)
+   * [*neuA-neuAh* and Reads](#neua-neuah-and-reads)
      * [Allelic Diversity](#allelic-diversity)
    * [*mompS* and Reads](#momps-and-reads)
      * [Read Mapping Schematic](#read-mapping-schematic)
@@ -23,7 +23,7 @@ A couple of quality control steps are applied when processing the reads:
    2. **[Sequence Coverage:](https://en.wikipedia.org/wiki/Coverage_(genetics))** After excluding low-quality bases, if there is not at least one read covering 100% of the locus (<99% for *neuA*/*neuAh* - see below), then no attempt to identify the allele is made, and a "-" will be reported. [How this is written makes me think that one entire read must cover all base pairs, i.e., a read of ~350 bp long. I believe this is different from what it means. Instead, each position must have part of a read that overlaps that nucleotide, and we require 10 reads to cover all positions] A minimum depth of 10 is applied as a cutoff. 
 
 <a id="neuA/neuAh"></a>
-### *neuA/neuAh* and reads
+### *neuA-neuAh* and reads
 
 [The sequence of *neuA*/*neuAh* loci can differ dramatically.](https://doi.org/10.1111/1469-0691.12459) The differences in sequence between *neuA*/*neuAh* alleles are sufficient that reads from some alleles will not map to others. Accordingly, we map reads to five [or six?] reference alleles that cover the sequence variation currently represented in the SBT database. The five [or six?] reference alleles used are the *neuA* allele from strain Paris (neuA_1), the *neuAh* allele from strain Dallas-1E (neuA_201), and three other alleles (neuA_207, neuA_211, and neuA_212) identified during the development of el_gato. The reference sequence with the best mapping (highest number of reads that map to a particular reference) is identified using `samtools coverage` with the caveat that >99% of the *neuA*/*neuAh* locus must have coverage of at least one read (some alleles contain small indels, so 100% is too strict); otherwise a "-" will be reported. Once the reference sequence is selected, the BLAST processing is the same as described above. 
 
