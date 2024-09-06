@@ -11,7 +11,7 @@ At its core, el_gato uses [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to i
    * [*mompS* and Assemblies](#momps-and-assemblies)
 
 
-First for the simple loci (*flaA*, *pilE*, *asd*, *mip*, and *proA*), the following processes are used:
+**First for the simple loci (*flaA*, *pilE*, *asd*, *mip*, and *proA*), the following processes are used:**
 
 ## Reads
 
