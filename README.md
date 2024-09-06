@@ -28,8 +28,8 @@ Previous developrs, maintainers, and testers: [Dev Mashruwala](https://github.co
 # Create an environment, here named elgato, and install el_gato.py plus all dependencies
 conda create -n elgato -c bioconda -c conda-forge el_gato
 
-[JH confirm final time that this will make el_gato and report module work]
-[maybe but mamba in parenthesis after conda or vice versus b/c we use mamba]
+[XX JH confirm final time that this will make el_gato and report module work XX]
+[XX maybe but mamba in parenthesis after conda or vice versus b/c we use mamba XX]
 
 # Activate the environment to use el_gato.py
 conda activate elgato
@@ -46,11 +46,11 @@ cd el_gato/
 python3 -m pip install .
 ```
 ### Dependencies
-* [python3]() [what version]
-* [minimap2](https://github.com/lh3/minimap2) [what version]
-* [SAMTools](https://github.com/samtools/samtools) [what version]
-* [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [what version]
-* [isPcr](https://users.soe.ucsc.edu/~kent/) [what version]
+* [python3](https://www.python.org/downloads/) (>=3.8,<3.12)
+* [minimap2](https://github.com/lh3/minimap2) (2.28-r1209)
+* [SAMTools](https://github.com/samtools/samtools) (1.20)
+* [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) (2.16.0+)
+* [isPcr](https://users.soe.ucsc.edu/~kent/) (33x2)
 * [fpdf2]() [what version]
   
 # Usage
@@ -66,7 +66,7 @@ el_gato.py --assembly assembly_file.fna --out output_folder/
 ```
 
 ## All available arguments
-[add in new arguments like the kmer option once included]
+[XX add in new arguments like the kmer option once included XX]
 Usage information printed when running el_gato.py with `-h` or `--help`.
 ```
 usage: el_gato.py [--read1 Read 1 file] [--read2 Read 2 file] [--assembly Assembly file] [--help]  
