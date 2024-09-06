@@ -1,7 +1,7 @@
 # el_gato
 **E**pidemiology of ***L**egionella* : **G**enome-b**A**sed **T**yping:  
 
-El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads (.fastq) or a genome assembly (.fasta) as input to replicate *Legionella pneumophila* Sanger-based Sequence Based Typing (SBT). From the input, seven loci (*flaA*, *pilE*, *asd*, *mip*, *mompS*, *proA*, *neuA/neuAh*) are identified and compared to a database of sequence types. The unique combination of the allelic identities of the seven target loci determines the sequence type for each input sample. 
+El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads (.fastq) or a genome assembly (.fasta) as input to replicate *Legionella pneumophila* Sanger-based Sequence Based Typing (SBT). From the input, seven loci (*flaA*, *pilE*, *asd*, *mip*, *mompS*, *proA*, and *neuA/neuAh*) are identified and compared to a database of sequence types. The unique combination of the allelic identities of the seven target loci determines the sequence type for each input sample. 
 
 * [Installation](#installation)
    * [Method 1: using conda](#method-1-using-conda)
