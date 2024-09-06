@@ -12,7 +12,7 @@ At its core, el_gato uses [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to i
 
 ## Reads
 
-The five more straightforward loci (*flaA*, *pilE*, *asd*, *mip*, and *proA*) are processed by mapping the reads to reference loci from [*L. pneumophila* strain Paris](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000048645.1/) and identifying the consensus sequence. Then, all alleles are determined using BLAST against the SBT allele database. The closest match is returned with an \* if loci have no exact match. When processing reads, identification of both *mompS* and *neuA*/*neuAh* requires additional analyses (described below).
+The five more straightforward loci (*flaA*, *pilE*, *asd*, *mip*, and *proA*) are processed by mapping the reads to reference loci from [*L. pneumophila* strain Paris](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000048645.1/) and identifying the consensus sequence. Then, all alleles are determined using BLAST against the [SBT allele database](https://github.com/jennahamlin/el_gato/tree/main/el_gato/db). The closest match is returned with an \* if loci have no exact match. When processing reads, identification of both *mompS* and *neuA*/*neuAh* requires additional analyses (described below).
 
 A couple of quality control steps are applied when processing the reads:
 
