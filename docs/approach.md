@@ -4,9 +4,9 @@ At its core, el_gato uses [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to i
 
 * [Reads](#reads)
    * [*neuA/neuAh*](#neuA/neuAh)
-   * [Allelic diversity](#allelic-diversity)
+     * [Allelic Diversity](#allelic-diversity)
    * [*mompS* and reads](#momps-and-reads)
-   * [*mompS* Read Mapping Schematic](#momps-read-mapping-schematic)
+     * [*mompS* Read Mapping Schematic](#momps-read-mapping-schematic)
 * [Assembly](#assembly)
    * [*mompS* and assemblies](#momps-and-assemblies)
 
@@ -27,7 +27,7 @@ A couple of quality control steps are applied when processing the reads:
 
 [The sequence of *neuA*/*neuAh* loci can differ dramatically.](https://doi.org/10.1111/1469-0691.12459) The differences in sequence between *neuA*/*neuAh* alleles are sufficient that reads from some alleles will not map to others. Accordingly, we map reads to five [or six?] reference alleles that cover the sequence variation currently represented in the SBT database. The five [or six?] reference alleles used are the *neuA* allele from strain Paris (neuA_1), the *neuAh* allele from strain Dallas-1E (neuA_201), and three other alleles (neuA_207, neuA_211, and neuA_212) identified during the development of el_gato. The reference sequence with the best mapping (highest number of reads that map to a particular reference) is identified using `samtools coverage` with the caveat that >99% of the *neuA*/*neuAh* locus must have coverage of at least one read (some alleles contain small indels, so 100% is too strict); otherwise a "-" will be reported. Once the reference sequence is selected, the BLAST processing is the same as described above. 
 
-#### *neuA/neuAh* allelic diversity
+#### Allelic Diversity
 <p align="center">
 <img src= "https://github.com/user-attachments/assets/7c0eb403-369a-40bf-892d-150c5d2fc214"/ >
 </p>
