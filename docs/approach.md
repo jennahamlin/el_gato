@@ -5,10 +5,10 @@ At its core, el_gato uses [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to i
 * [Reads](#reads)
    * [*neuA/neuAh*](#neuA/neuAh)
      * [Allelic Diversity](#allelic-diversity)
-   * [*mompS* and reads](#momps-and-reads)
-     * [*mompS* Read Mapping Schematic](#momps-read-mapping-schematic)
+   * [*mompS* and Reads](#momps-and-reads)
+     * [Read Mapping Schematic](#read-mapping-schematic)
 * [Assembly](#assembly)
-   * [*mompS* and assemblies](#momps-and-assemblies)
+   * [*mompS* and Assemblies](#momps-and-assemblies)
 
 
 First for the simple loci (*flaA*, *pilE*, *asd*, *mip*, and *proA*), the following processes are used:
@@ -34,7 +34,7 @@ A couple of quality control steps are applied when processing the reads:
 
 **Figure 1: *neuA/neuAh* Sequence Diversity -** Identified allele groups that include the known genetic heterogeneity in *neuA/neuAh* (allele group Paris and allele group Dallas-1E). We identified two [three or four] other allele groups and have tested data with the neuA_207 and neuA_211 alleles to confirm their presence.
 
-### *mompS* and reads
+### *mompS* and Reads
 
 [*mompS* is sometimes present in multiple copies in the genome of *L. pneumophila*, though typically two copies.](https://doi.org/10.1016/j.cmi.2017.01.002) Duplicate gene copies pose an obvious challenge for a short read-mapping approach. If two similar sequence copies are present in a genome, reads from both copies may map to the same reference sequence, calling into question which base pairs are correctly associated with the loci of interest.
 
@@ -66,7 +66,7 @@ Note that as the above process depends upon read pairs mapping to biallelic site
 
 If the above process cannot identify the correct sequence, a `?` will be returned as the *mompS* allele, and el_gato will report information about the steps in this process in the [output files](input_output.md/#output-files).
 
-#### *momps* Read Mapping Schematic
+#### Read Mapping Schematic
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/5c697f0b-f271-401c-8728-126fa24861a9"/ >
@@ -78,6 +78,6 @@ If the above process cannot identify the correct sequence, a `?` will be returne
 
 Six of the seven loci (*flaA*, *pilE*, *asd*, *mip*,*proA*, and *neuA/neuAh*) are identified using BLAST. For each, the best BLAST result is returned as the allele. The closest match is returned with an \* if loci have no exact match. Only *mompS* requires extra when processing an assembly.
 
-### *mompS* and assemblies
+### *mompS* and Assemblies
 
 [*mompS* is sometimes present in multiple copies in *Legionella pneumophila*, though typically two copies.](https://doi.org/10.1016/j.cmi.2017.01.002) When typing *L. pneumophila* using Sanger sequencing, primers amplify only the correct *mompS* locus. We, therefore, use [*in silico* PCR](https://users.soe.ucsc.edu/~kent/) to extract the correct *mompS* locus sequence from the assembly. The primers used for *in silico* PCR are *mompS*-450F (TTGACCATGAGTGGGATTGG) and *mompS*-1116R (TGGATAAATTATCCAGCCGGACTTC) [as described in this protocol](https://doi.org/10.1007/978-1-62703-161-5_6). The *mompS* allele is then identified using BLAST. Note that because of information lost (read orientation and quality metrics) when generating an assembly, this method does not perform as well as using Illumina reads. 
