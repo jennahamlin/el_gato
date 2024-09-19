@@ -1,11 +1,11 @@
 # el_gato
 **E**pidemiology of ***L**egionella* : **G**enome-b**A**sed **T**yping:  
 
-El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads (.fastq) or a genome assembly (.fasta) as input to replicate *Legionella pneumophila* Sanger-based Sequence Based Typing (SBT). From the input, seven loci (*flaA*, *pilE*, *asd*, *mip*, *mompS*, *proA*, and *neuA/neuAh*) are identified and compared to a database of sequence types. The unique combination of the allelic identities of the seven target loci determines the sequence type for each input sample. 
+El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads (.fastq) or a genome assembly (.fasta) as input to replicate *Legionella pneumophila* Sanger-based Sequence Based Typing (SBT). From the input, seven loci (*flaA*, *pilE*, *asd*, *mip*, *mompS*, *proA*, and *neuA/neuAh*) are identified and compared to a [database of sequence types](https://github.com/appliedbinf/el_gato/blob/main/el_gato/db/lpneumophila.txt). The unique combination of the allelic identities of the seven target loci determines the sequence type for each input sample. 
 
 * [Installation](#installation)
-   * [Method 1: using conda](#method-1-using-conda)
-   * [Method 2: using pip](#method-2-using-pip)
+   * [Method 1: Using Conda](#method-1-using-conda)
+   * [Method 2: Using pip](#method-2-using-pip)
      * [Dependencies](#dependencies)
 * [Usage](#usage)
    * [Quickstart guide](#quickstart-guide)
@@ -15,7 +15,6 @@ El_gato is a bioinformatics tool that utilizes either Illumina paired-end reads 
   * [Output files](docs/input_output.md/#output-files)
 * [How does el_gato work?](docs/approach.md)
 * [Reporting Module](docs/reporting_module.md)
-* [Nextflow option](docs/nextflow.md)
 
 Codebase stage: XX  
 Developers, maintainers, and testers: [Alan Collins](https://github.com/Alan-Collins), [Will Overholt](https://github.com/waoverholt/), [Jenna Hamlin](https://github.com/jennahamlin)  
@@ -23,7 +22,7 @@ Previous developrs, maintainers, and testers: [Dev Mashruwala](https://github.co
 
 # Installation 
 
-## Method 1: using conda
+## Method 1: Using Conda
 ```
 # Create an environment, here named elgato, and install el_gato.py plus all dependencies
 conda create -n elgato -c bioconda -c conda-forge el_gato
@@ -35,8 +34,8 @@ conda create -n elgato -c bioconda -c conda-forge el_gato
 conda activate elgato
 ```
 
-## Method 2: using pip
-**Note** Using this method requires you to install all [dependencies](#dependencies)
+## Method 2: Using pip
+**Note** Using this method requires you to install all [Dependencies](#dependencies)
 ```
 # Download el_gato by cloning the git repository
 git clone https://github.com/appliedbinf/el_gato.git
